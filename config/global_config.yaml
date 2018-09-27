@@ -1,0 +1,32 @@
+data:
+  dataset:
+    train_path: /m/liyz/flower_classification/raw_data/train_filelist.txt
+    dev_path: /m/liyz/flower_classification/raw_data/dev_filelist.txt
+    test_path: /m/liyz/flower_classification/raw_data/test_filelist.txt
+
+global:
+  random_seed: 123
+  model: densenet201
+
+train:
+  continue: False # 默认是不是继续上次训练
+  batch_size: 48  #最好是5的倍数，便于计算准确率
+  valid_batch_size: 48 #default 32
+  test_batch_size: 48
+  epoch: 200
+  enable_cuda: True
+
+  model_path: /m/liyz/flower_classification/checkpoint/panda5_2018-09-26-18_46_57__weight.pt
+  model_weight_dir: checkpoint/
+  ckpt_log_path: checkpoint/
+
+  optimizer: 'adam'  # adam, sgd, adamax, adadelta(default is adamax)
+  learning_rate: 0.001  # only for sgd
+  eps: 1e-6
+
+test:
+  test_batch_size: 64
+  enable_cuda: True
+  model_path: /m/liyz/flower_classification/checkpoint/panda5_2018-09-26-23_08_34_all_sample_finetune_weight.pt
+  output_file_path: 'result/'
+
